@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as OurStaffRouteImport } from './routes/our-staff'
+import { Route as PricingTablesRouteImport } from './routes/pricing-tables'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const OurStaffRoute = OurStaffRouteImport.update({
   path: '/our-staff',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingTablesRoute = PricingTablesRouteImport.update({
+  id: '/pricing-tables',
+  path: '/pricing-tables',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/our-staff': typeof OurStaffRoute
+  '/pricing-tables': typeof PricingTablesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/our-staff': typeof OurStaffRoute
+  '/pricing-tables': typeof PricingTablesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/our-staff': typeof OurStaffRoute
+  '/pricing-tables': typeof PricingTablesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about-us' | '/our-staff'
+  fullPaths: '/' | '/about-us' | '/our-staff' | '/pricing-tables'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us' | '/our-staff'
-  id: '__root__' | '/' | '/about-us' | '/our-staff'
+  to: '/' | '/about-us' | '/our-staff' | '/pricing-tables'
+  id: '__root__' | '/' | '/about-us' | '/our-staff' | '/pricing-tables'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
   OurStaffRoute: typeof OurStaffRoute
+  PricingTablesRoute: typeof PricingTablesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurStaffRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing-tables': {
+      id: '/pricing-tables'
+      path: '/pricing-tables'
+      fullPath: '/pricing-tables'
+      preLoaderRoute: typeof PricingTablesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
   OurStaffRoute: OurStaffRoute,
+  PricingTablesRoute: PricingTablesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
