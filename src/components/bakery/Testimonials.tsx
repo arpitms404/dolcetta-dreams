@@ -15,7 +15,7 @@ export function Testimonials() {
     const t = setInterval(() => setI((v) => (v + 1) % QUOTES.length), 5000);
     return () => clearInterval(t);
   }, []);
-  const q = QUOTES[i];
+  const q = QUOTES[i]!;
 
   return (
     <section className="relative overflow-hidden bg-rose px-4 py-28">
