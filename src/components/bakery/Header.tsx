@@ -44,8 +44,8 @@ function TopLink({ item }: { item: NavItem }) {
   const active =
     item.to === path || item.children?.some((c) => c.to === path) || false;
 
-  const cls = `serif relative inline-flex items-center gap-1 text-[17px] font-bold transition-colors ${
-    active ? "text-rose" : "text-ink hover:text-rose"
+  const cls = `serif relative inline-flex items-center gap-1.5 text-[17px] font-bold transition-colors ${
+    active ? "text-mint" : "text-ink hover:text-mint"
   }`;
 
   if (!item.children) {
@@ -66,7 +66,6 @@ function TopLink({ item }: { item: NavItem }) {
       <button className={cls}>
         {active && <span className="h-1.5 w-1.5 rounded-full bg-rose" />}
         {item.label}
-        <ChevronDown className="h-3.5 w-3.5" />
       </button>
       <AnimatePresence>
         {open && (
@@ -74,14 +73,14 @@ function TopLink({ item }: { item: NavItem }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
-            className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-4"
+            className="absolute left-1/2 top-full z-50 w-52 -translate-x-1/2 pt-4"
           >
-            <ul className="overflow-hidden rounded-2xl bg-white py-2 shadow-lift">
+            <ul className="overflow-hidden rounded-xl border border-mint bg-white py-1 shadow-lift divide-y divide-mint/30">
               {item.children.map((c) => (
                 <li key={c.to}>
                   <Link
                     to={c.to}
-                    className="block px-5 py-2 text-sm text-body transition-colors hover:bg-mint/10 hover:text-rose"
+                    className="block px-5 py-2.5 text-center text-sm text-ink transition-colors hover:text-mint"
                   >
                     {c.label}
                   </Link>
