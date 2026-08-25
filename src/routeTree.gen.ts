@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as ContentElementsRouteImport } from './routes/content-elements'
 import { Route as OurStaffRouteImport } from './routes/our-staff'
 import { Route as PricingTablesRouteImport } from './routes/pricing-tables'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContentElementsRoute = ContentElementsRouteImport.update({
+  id: '/content-elements',
+  path: '/content-elements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OurStaffRoute = OurStaffRouteImport.update({
@@ -38,12 +44,14 @@ const PricingTablesRoute = PricingTablesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/pricing-tables': typeof PricingTablesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/pricing-tables': typeof PricingTablesRoute
 }
@@ -51,20 +59,29 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/pricing-tables': typeof PricingTablesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about-us' | '/our-staff' | '/pricing-tables'
+  fullPaths:
+    '/' | '/about-us' | '/content-elements' | '/our-staff' | '/pricing-tables'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us' | '/our-staff' | '/pricing-tables'
-  id: '__root__' | '/' | '/about-us' | '/our-staff' | '/pricing-tables'
+  to: '/' | '/about-us' | '/content-elements' | '/our-staff' | '/pricing-tables'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/content-elements'
+    | '/our-staff'
+    | '/pricing-tables'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  ContentElementsRoute: typeof ContentElementsRoute
   OurStaffRoute: typeof OurStaffRoute
   PricingTablesRoute: typeof PricingTablesRoute
 }
@@ -83,6 +100,13 @@ declare module '@tanstack/react-router' {
       path: '/about-us'
       fullPath: '/about-us'
       preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content-elements': {
+      id: '/content-elements'
+      path: '/content-elements'
+      fullPath: '/content-elements'
+      preLoaderRoute: typeof ContentElementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/our-staff': {
@@ -105,6 +129,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  ContentElementsRoute: ContentElementsRoute,
   OurStaffRoute: OurStaffRoute,
   PricingTablesRoute: PricingTablesRoute,
 }
