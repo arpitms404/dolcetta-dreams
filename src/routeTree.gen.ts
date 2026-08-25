@@ -17,6 +17,7 @@ import { Route as OurStaffRouteImport } from './routes/our-staff'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PricingTablesRouteImport } from './routes/pricing-tables'
 import { Route as RecipesGridRouteImport } from './routes/recipes-grid'
+import { Route as ShopRouteImport } from './routes/shop'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const RecipesGridRoute = RecipesGridRouteImport.update({
   path: '/recipes-grid',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/portfolio': typeof PortfolioRoute
   '/pricing-tables': typeof PricingTablesRoute
   '/recipes-grid': typeof RecipesGridRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/portfolio': typeof PortfolioRoute
   '/pricing-tables': typeof PricingTablesRoute
   '/recipes-grid': typeof RecipesGridRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/portfolio': typeof PortfolioRoute
   '/pricing-tables': typeof PricingTablesRoute
   '/recipes-grid': typeof RecipesGridRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/portfolio'
     | '/pricing-tables'
     | '/recipes-grid'
+    | '/shop'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/portfolio'
     | '/pricing-tables'
     | '/recipes-grid'
+    | '/shop'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/portfolio'
     | '/pricing-tables'
     | '/recipes-grid'
+    | '/shop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   PortfolioRoute: typeof PortfolioRoute
   PricingTablesRoute: typeof PricingTablesRoute
   RecipesGridRoute: typeof RecipesGridRoute
+  ShopRoute: typeof ShopRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RecipesGridRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   PortfolioRoute: PortfolioRoute,
   PricingTablesRoute: PricingTablesRoute,
   RecipesGridRoute: RecipesGridRoute,
+  ShopRoute: ShopRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
