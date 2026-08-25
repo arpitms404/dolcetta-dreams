@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as ContentElementsRouteImport } from './routes/content-elements'
 import { Route as OurStaffRouteImport } from './routes/our-staff'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
@@ -38,6 +39,11 @@ const BlogRoute = BlogRouteImport.update({
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContentElementsRoute = ContentElementsRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/blog': typeof BlogRoute
   '/cart': typeof CartRoute
+  '/contacts': typeof ContactsRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/portfolio': typeof PortfolioRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/blog': typeof BlogRoute
   '/cart': typeof CartRoute
+  '/contacts': typeof ContactsRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/portfolio': typeof PortfolioRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/blog': typeof BlogRoute
   '/cart': typeof CartRoute
+  '/contacts': typeof ContactsRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/portfolio': typeof PortfolioRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/blog'
     | '/cart'
+    | '/contacts'
     | '/content-elements'
     | '/our-staff'
     | '/portfolio'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/blog'
     | '/cart'
+    | '/contacts'
     | '/content-elements'
     | '/our-staff'
     | '/portfolio'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/blog'
     | '/cart'
+    | '/contacts'
     | '/content-elements'
     | '/our-staff'
     | '/portfolio'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   BlogRoute: typeof BlogRoute
   CartRoute: typeof CartRoute
+  ContactsRoute: typeof ContactsRoute
   ContentElementsRoute: typeof ContentElementsRoute
   OurStaffRoute: typeof OurStaffRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -188,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/cart'
       fullPath: '/cart'
       preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/content-elements': {
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   BlogRoute: BlogRoute,
   CartRoute: CartRoute,
+  ContactsRoute: ContactsRoute,
   ContentElementsRoute: ContentElementsRoute,
   OurStaffRoute: OurStaffRoute,
   PortfolioRoute: PortfolioRoute,
