@@ -11,6 +11,11 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "@/components/bakery/Header";
+import { Footer } from "@/components/bakery/Footer";
+import { Preloader } from "@/components/bakery/Preloader";
+import { BackToTop } from "@/components/bakery/BackToTop";
+
 
 function NotFoundComponent() {
   return (
