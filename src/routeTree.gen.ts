@@ -14,6 +14,7 @@ import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as ContentElementsRouteImport } from './routes/content-elements'
 import { Route as OurStaffRouteImport } from './routes/our-staff'
 import { Route as PricingTablesRouteImport } from './routes/pricing-tables'
+import { Route as RecipesGridRouteImport } from './routes/recipes-grid'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const PricingTablesRoute = PricingTablesRouteImport.update({
   path: '/pricing-tables',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecipesGridRoute = RecipesGridRouteImport.update({
+  id: '/recipes-grid',
+  path: '/recipes-grid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/pricing-tables': typeof PricingTablesRoute
+  '/recipes-grid': typeof RecipesGridRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/pricing-tables': typeof PricingTablesRoute
+  '/recipes-grid': typeof RecipesGridRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,25 @@ export interface FileRoutesById {
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/pricing-tables': typeof PricingTablesRoute
+  '/recipes-grid': typeof RecipesGridRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about-us' | '/content-elements' | '/our-staff' | '/pricing-tables'
+    | '/'
+    | '/about-us'
+    | '/content-elements'
+    | '/our-staff'
+    | '/pricing-tables'
+    | '/recipes-grid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us' | '/content-elements' | '/our-staff' | '/pricing-tables'
+  to:
+    | '/'
+    | '/about-us'
+    | '/content-elements'
+    | '/our-staff'
+    | '/pricing-tables'
+    | '/recipes-grid'
   id:
     | '__root__'
     | '/'
@@ -76,6 +96,7 @@ export interface FileRouteTypes {
     | '/content-elements'
     | '/our-staff'
     | '/pricing-tables'
+    | '/recipes-grid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -84,6 +105,7 @@ export interface RootRouteChildren {
   ContentElementsRoute: typeof ContentElementsRoute
   OurStaffRoute: typeof OurStaffRoute
   PricingTablesRoute: typeof PricingTablesRoute
+  RecipesGridRoute: typeof RecipesGridRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -123,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingTablesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recipes-grid': {
+      id: '/recipes-grid'
+      path: '/recipes-grid'
+      fullPath: '/recipes-grid'
+      preLoaderRoute: typeof RecipesGridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -132,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContentElementsRoute: ContentElementsRoute,
   OurStaffRoute: OurStaffRoute,
   PricingTablesRoute: PricingTablesRoute,
+  RecipesGridRoute: RecipesGridRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
