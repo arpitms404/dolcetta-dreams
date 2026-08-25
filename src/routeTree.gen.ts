@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContentElementsRouteImport } from './routes/content-elements'
 import { Route as OurStaffRouteImport } from './routes/our-staff'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContentElementsRoute = ContentElementsRouteImport.update({
@@ -56,6 +62,7 @@ const RecipesGridRoute = RecipesGridRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/blog': typeof BlogRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/portfolio': typeof PortfolioRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/blog': typeof BlogRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/portfolio': typeof PortfolioRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/blog': typeof BlogRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
   '/portfolio': typeof PortfolioRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-us'
+    | '/blog'
     | '/content-elements'
     | '/our-staff'
     | '/portfolio'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about-us'
+    | '/blog'
     | '/content-elements'
     | '/our-staff'
     | '/portfolio'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about-us'
+    | '/blog'
     | '/content-elements'
     | '/our-staff'
     | '/portfolio'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  BlogRoute: typeof BlogRoute
   ContentElementsRoute: typeof ContentElementsRoute
   OurStaffRoute: typeof OurStaffRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/about-us'
       fullPath: '/about-us'
       preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/content-elements': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  BlogRoute: BlogRoute,
   ContentElementsRoute: ContentElementsRoute,
   OurStaffRoute: OurStaffRoute,
   PortfolioRoute: PortfolioRoute,
