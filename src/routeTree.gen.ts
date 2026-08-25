@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as ContentElementsRouteImport } from './routes/content-elements'
+import { Route as OurStaffRouteImport } from './routes/our-staff'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PricingTablesRouteImport } from './routes/pricing-tables'
+import { Route as RecipesGridRouteImport } from './routes/recipes-grid'
+import { Route as ShopRouteImport } from './routes/shop'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContentElementsRoute = ContentElementsRouteImport.update({
+  id: '/content-elements',
+  path: '/content-elements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurStaffRoute = OurStaffRouteImport.update({
+  id: '/our-staff',
+  path: '/our-staff',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingTablesRoute = PricingTablesRouteImport.update({
+  id: '/pricing-tables',
+  path: '/pricing-tables',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecipesGridRoute = RecipesGridRouteImport.update({
+  id: '/recipes-grid',
+  path: '/recipes-grid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/blog': typeof BlogRoute
+  '/cart': typeof CartRoute
+  '/contacts': typeof ContactsRoute
+  '/content-elements': typeof ContentElementsRoute
+  '/our-staff': typeof OurStaffRoute
+  '/portfolio': typeof PortfolioRoute
+  '/pricing-tables': typeof PricingTablesRoute
+  '/recipes-grid': typeof RecipesGridRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/blog': typeof BlogRoute
+  '/cart': typeof CartRoute
+  '/contacts': typeof ContactsRoute
+  '/content-elements': typeof ContentElementsRoute
+  '/our-staff': typeof OurStaffRoute
+  '/portfolio': typeof PortfolioRoute
+  '/pricing-tables': typeof PricingTablesRoute
+  '/recipes-grid': typeof RecipesGridRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/blog': typeof BlogRoute
+  '/cart': typeof CartRoute
+  '/contacts': typeof ContactsRoute
+  '/content-elements': typeof ContentElementsRoute
+  '/our-staff': typeof OurStaffRoute
+  '/portfolio': typeof PortfolioRoute
+  '/pricing-tables': typeof PricingTablesRoute
+  '/recipes-grid': typeof RecipesGridRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/blog'
+    | '/cart'
+    | '/contacts'
+    | '/content-elements'
+    | '/our-staff'
+    | '/portfolio'
+    | '/pricing-tables'
+    | '/recipes-grid'
+    | '/shop'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about-us'
+    | '/blog'
+    | '/cart'
+    | '/contacts'
+    | '/content-elements'
+    | '/our-staff'
+    | '/portfolio'
+    | '/pricing-tables'
+    | '/recipes-grid'
+    | '/shop'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/blog'
+    | '/cart'
+    | '/contacts'
+    | '/content-elements'
+    | '/our-staff'
+    | '/portfolio'
+    | '/pricing-tables'
+    | '/recipes-grid'
+    | '/shop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
+  BlogRoute: typeof BlogRoute
+  CartRoute: typeof CartRoute
+  ContactsRoute: typeof ContactsRoute
+  ContentElementsRoute: typeof ContentElementsRoute
+  OurStaffRoute: typeof OurStaffRoute
+  PortfolioRoute: typeof PortfolioRoute
+  PricingTablesRoute: typeof PricingTablesRoute
+  RecipesGridRoute: typeof RecipesGridRoute
+  ShopRoute: typeof ShopRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +182,91 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content-elements': {
+      id: '/content-elements'
+      path: '/content-elements'
+      fullPath: '/content-elements'
+      preLoaderRoute: typeof ContentElementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-staff': {
+      id: '/our-staff'
+      path: '/our-staff'
+      fullPath: '/our-staff'
+      preLoaderRoute: typeof OurStaffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing-tables': {
+      id: '/pricing-tables'
+      path: '/pricing-tables'
+      fullPath: '/pricing-tables'
+      preLoaderRoute: typeof PricingTablesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recipes-grid': {
+      id: '/recipes-grid'
+      path: '/recipes-grid'
+      fullPath: '/recipes-grid'
+      preLoaderRoute: typeof RecipesGridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
+  BlogRoute: BlogRoute,
+  CartRoute: CartRoute,
+  ContactsRoute: ContactsRoute,
+  ContentElementsRoute: ContentElementsRoute,
+  OurStaffRoute: OurStaffRoute,
+  PortfolioRoute: PortfolioRoute,
+  PricingTablesRoute: PricingTablesRoute,
+  RecipesGridRoute: RecipesGridRoute,
+  ShopRoute: ShopRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
