@@ -27,18 +27,10 @@ export function ScallopEdge({
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute inset-x-0 z-20 ${className}`}
-      style={{
-        height,
-        [position]: -(height - 1),
-        transform: position === "bottom" ? "scaleY(-1)" : undefined,
-      }}
+      className={`pointer-events-none absolute inset-x-0 z-20 ${position === "top" ? "top-0" : "bottom-0"} ${className}`}
+      style={{ height, transform: position === "top" ? "scaleY(-1)" : undefined }}
     >
-      <svg
-        viewBox="0 0 1200 25"
-        preserveAspectRatio="none"
-        className="h-full w-full"
-      >
+      <svg viewBox="0 0 1200 25" preserveAspectRatio="none" className="h-full w-full">
         <path d={scallopPath()} fill={color} />
       </svg>
     </div>
@@ -213,19 +205,15 @@ export function PhotoBand({
   fixed?: boolean;
 }) {
   return (
-    <section className={`relative overflow-hidden ${className}`}>
+    <section className={`relative ${drip ? "overflow-visible" : "overflow-hidden"} ${className}`}>
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${image})`, backgroundAttachment: fixed ? "fixed" : undefined }}
       />
       <div className="absolute inset-0" style={{ background: overlay }} />
-      {topEdge ? <ScallopEdge color={topEdge} position="top" className="!top-0" /> : null}
+      {topEdge ? <ScallopEdge color={topEdge} position="top" /> : null}
       <div className="relative z-10">{children}</div>
-      {drip ? (
-        <DripEdge color={drip} className="!translate-y-0" />
-      ) : bottomEdge ? (
-        <ScallopEdge color={bottomEdge} position="bottom" className="!bottom-0" />
-      ) : null}
+      {drip ? <DripEdge color={drip} /> : bottomEdge ? <ScallopEdge color={bottomEdge} position="bottom" /> : null}
     </section>
   );
 }
