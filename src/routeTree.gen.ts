@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as ContentElementsRouteImport } from './routes/content-elements'
 import { Route as OurStaffRouteImport } from './routes/our-staff'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PricingTablesRouteImport } from './routes/pricing-tables'
 import { Route as RecipesGridRouteImport } from './routes/recipes-grid'
 
@@ -36,6 +37,11 @@ const OurStaffRoute = OurStaffRouteImport.update({
   path: '/our-staff',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingTablesRoute = PricingTablesRouteImport.update({
   id: '/pricing-tables',
   path: '/pricing-tables',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
+  '/portfolio': typeof PortfolioRoute
   '/pricing-tables': typeof PricingTablesRoute
   '/recipes-grid': typeof RecipesGridRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
+  '/portfolio': typeof PortfolioRoute
   '/pricing-tables': typeof PricingTablesRoute
   '/recipes-grid': typeof RecipesGridRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/content-elements': typeof ContentElementsRoute
   '/our-staff': typeof OurStaffRoute
+  '/portfolio': typeof PortfolioRoute
   '/pricing-tables': typeof PricingTablesRoute
   '/recipes-grid': typeof RecipesGridRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/content-elements'
     | '/our-staff'
+    | '/portfolio'
     | '/pricing-tables'
     | '/recipes-grid'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/content-elements'
     | '/our-staff'
+    | '/portfolio'
     | '/pricing-tables'
     | '/recipes-grid'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/content-elements'
     | '/our-staff'
+    | '/portfolio'
     | '/pricing-tables'
     | '/recipes-grid'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   ContentElementsRoute: typeof ContentElementsRoute
   OurStaffRoute: typeof OurStaffRoute
+  PortfolioRoute: typeof PortfolioRoute
   PricingTablesRoute: typeof PricingTablesRoute
   RecipesGridRoute: typeof RecipesGridRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurStaffRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing-tables': {
       id: '/pricing-tables'
       path: '/pricing-tables'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   ContentElementsRoute: ContentElementsRoute,
   OurStaffRoute: OurStaffRoute,
+  PortfolioRoute: PortfolioRoute,
   PricingTablesRoute: PricingTablesRoute,
   RecipesGridRoute: RecipesGridRoute,
 }
