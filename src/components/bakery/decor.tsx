@@ -128,6 +128,82 @@ export function Ornament({ className = "" }: { className?: string }) {
   );
 }
 
+/* ---------------- Teal bow ornament ---------------- */
+export function BowOrnament({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 40"
+      aria-hidden
+      className={`mx-auto mb-2 h-8 w-auto text-mint ${className}`}
+    >
+      <path
+        d="M32 20 C32 10 20 6 20 18 C20 30 32 24 32 20 Z"
+        fill="currentColor"
+      />
+      <path
+        d="M32 20 C32 10 44 6 44 18 C44 30 32 24 32 20 Z"
+        fill="currentColor"
+      />
+      <circle cx="32" cy="20" r="3" fill="currentColor" />
+      <path
+        d="M32 23 L28 36 M32 23 L36 36"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/* ---------------- Scalloped seal card ---------------- */
+function scallopedSealPath(size: number, bumps: number, depth: number) {
+  const cx = size / 2;
+  const cy = size / 2;
+  const R = size / 2 - 4;
+  const r = R - depth;
+  const steps = 140;
+  let d = "";
+  for (let i = 0; i <= steps; i++) {
+    const theta = (i / steps) * Math.PI * 2;
+    const radius = r + depth * (0.5 + 0.5 * Math.cos(bumps * theta));
+    const x = cx + radius * Math.cos(theta);
+    const y = cy + radius * Math.sin(theta);
+    d += `${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+  d += " Z";
+  return d;
+}
+
+export function ScallopedSeal({
+  size = 520,
+  bumps = 16,
+  depth = 26,
+  children,
+  className = "",
+}: {
+  size?: number;
+  bumps?: number;
+  depth?: number;
+  children?: ReactNode;
+  className?: string;
+}) {
+  const path = scallopedSealPath(size, bumps, depth);
+  return (
+    <div className={`relative grid place-items-center ${className}`}>
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        className="absolute inset-0 h-full w-full"
+        style={{ filter: "drop-shadow(0 18px 34px rgba(74,63,63,0.18))" }}
+      >
+        <path d={path} fill="#fff" />
+      </svg>
+      <div className="relative z-10 flex flex-col items-center justify-center px-10 text-center">
+        {children}
+      </div>
+    </div>
+  );
+}
+
 /* ---------------- Section heading ---------------- */
 export function SectionHeading({
   title,
