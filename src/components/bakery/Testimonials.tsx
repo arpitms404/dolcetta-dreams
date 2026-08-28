@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { IMG, LOREM } from "@/lib/images";
-import { ScallopEdge, SectionHeading } from "./decor";
+import { DripEdge, SectionHeading } from "./decor";
 
 const QUOTES = [
   { name: "Maria Doe", text: LOREM, img: IMG.avatars[0] },
@@ -18,9 +18,9 @@ export function Testimonials() {
   const q = QUOTES[i]!;
 
   return (
-    <section className="relative overflow-hidden bg-rose px-4 py-28">
-      <ScallopEdge color="#ffffff" position="top" />
-      <ScallopEdge color="#ffffff" position="bottom" />
+    <section className="relative bg-rose px-4 py-28">
+      <DripEdge color="#ffffff" position="top" />
+      <DripEdge color="var(--rose)" position="bottom" />
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <SectionHeading title="Clients Say" light />
         <AnimatePresence mode="wait">
