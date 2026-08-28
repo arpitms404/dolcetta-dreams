@@ -17,11 +17,12 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
+  BowOrnament,
   CloudButton,
-  Ornament,
   PhotoBand,
   Reveal,
   ScallopEdge,
+  ScallopedSeal,
   SectionHeading,
 } from "@/components/bakery/decor";
 import { Lightbox } from "@/components/bakery/Lightbox";
@@ -81,30 +82,35 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative max-w-lg bg-white/85 px-10 py-16 text-center backdrop-blur-sm"
-          style={{ borderRadius: "48% 52% 46% 54% / 52% 46% 54% 48%" }}
+          className="relative"
         >
-          <Ornament />
-          <h1 className="script text-5xl text-ink sm:text-6xl">Welcome to Dolcetta</h1>
-          <p className="mx-auto mt-4 max-w-sm text-[15px] text-body">
-            We offer a great range of different flavoured bite-size pastries and cakes
-          </p>
+          <ScallopedSeal className="aspect-square w-[min(520px,86vw)]">
+            <BowOrnament className="h-9" />
+            <h1 className="script text-5xl leading-tight text-ink sm:text-6xl">
+              Welcome
+              <br />
+              to Dolcetta
+            </h1>
+            <p className="mx-auto mt-4 max-w-[18rem] text-[15px] text-body">
+              We offer a great range of different flavoured bite-size pastries and cakes
+            </p>
+          </ScallopedSeal>
         </motion.div>
       </div>
 
       <button
         aria-label="Previous slide"
         onClick={() => setI((v) => (v - 1 + slides.length) % slides.length)}
-        className="absolute left-4 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-ink transition hover:bg-mint hover:text-white"
+        className="absolute left-3 top-1/2 z-20 -translate-y-1/2 p-2 text-white/90 transition hover:text-mint"
       >
-        <ChevronLeft className="h-5 w-5" />
+        <ChevronLeft className="h-8 w-8" strokeWidth={1.2} />
       </button>
       <button
         aria-label="Next slide"
         onClick={() => setI((v) => (v + 1) % slides.length)}
-        className="absolute right-4 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-ink transition hover:bg-mint hover:text-white"
+        className="absolute right-3 top-1/2 z-20 -translate-y-1/2 p-2 text-white/90 transition hover:text-mint"
       >
-        <ChevronRight className="h-5 w-5" />
+        <ChevronRight className="h-8 w-8" strokeWidth={1.2} />
       </button>
 
       <div className="absolute bottom-16 left-1/2 z-20 flex -translate-x-1/2 gap-2">
