@@ -300,6 +300,7 @@ export function PhotoBand({
   topEdge = "#ffffff",
   bottomEdge = "#ffffff",
   drip,
+  topDrip,
   className = "",
   fixed = false,
 }: {
@@ -309,6 +310,7 @@ export function PhotoBand({
   topEdge?: string | null;
   bottomEdge?: string | null;
   drip?: string;
+  topDrip?: string;
   className?: string;
   fixed?: boolean;
 }) {
@@ -319,9 +321,14 @@ export function PhotoBand({
         style={{ backgroundImage: `url(${image})`, backgroundAttachment: fixed ? "fixed" : undefined }}
       />
       <div className="absolute inset-0" style={{ background: overlay }} />
-      {topEdge ? <ScallopEdge color={topEdge} position="top" /> : null}
+      {topDrip ? (
+        <DripEdge color={topDrip} position="top" />
+      ) : topEdge ? (
+        <ScallopEdge color={topEdge} position="top" />
+      ) : null}
       <div className="relative z-10">{children}</div>
       {drip ? <DripEdge color={drip} /> : bottomEdge ? <ScallopEdge color={bottomEdge} position="bottom" /> : null}
+
     </section>
   );
 }
