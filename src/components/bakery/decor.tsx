@@ -3,11 +3,13 @@ import { useRef, type ReactNode } from "react";
 import ornament from "@/assets/ornament-cupcake.png.asset.json";
 
 /* ---------------- Scalloped icing edge ---------------- */
-function scallopPath(bumps = 30, w = 1200, h = 25) {
-  const step = w / bumps;
+function scallopPath(bumps = 26, w = 1200, h = 25) {
+  const steps = bumps * 16;
   let d = `M0 ${h}`;
-  for (let i = 0; i < bumps; i++) {
-    d += ` a ${step / 2} ${h} 0 0 1 ${step} 0`;
+  for (let i = 0; i <= steps; i++) {
+    const x = (i / steps) * w;
+    const y = h - h * (0.5 + 0.5 * Math.cos((2 * Math.PI * bumps * x) / w));
+    d += ` L${x.toFixed(2)} ${y.toFixed(2)}`;
   }
   d += ` L${w} ${h} Z`;
   return d;
@@ -53,16 +55,20 @@ function dripPath(w = 1200, base = 18) {
 
 export function DripEdge({
   color = "#79D0C8",
+  position = "bottom",
   className = "",
 }: {
   color?: string;
+  position?: "top" | "bottom";
   className?: string;
 }) {
+  const top = position === "top";
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-full ${className}`}
+      className={`pointer-events-none absolute inset-x-0 z-20 ${top ? "top-0" : "bottom-0 translate-y-full"} ${className}`}
       style={{ height: 92 }}
+
     >
       <svg viewBox="0 0 1200 110" preserveAspectRatio="none" className="h-full w-full">
         <path d={dripPath()} fill={color} transform="translate(0,-18)" />
@@ -70,6 +76,32 @@ export function DripEdge({
     </div>
   );
 }
+
+/* ---------------- Scalloped outline badge ---------------- */
+export function ScallopBadge({
+  size = 160,
+  color = "#79D0C8",
+  children,
+  className = "",
+}: {
+  size?: number;
+  color?: string;
+  children?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`relative grid place-items-center ${className}`}
+      style={{ width: size, height: size }}
+    >
+      <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full">
+        <path d={scallopedSealPath(200, 18, 8)} fill="#fff" stroke={color} strokeWidth="3" />
+      </svg>
+      <div className="relative z-10 grid place-items-center">{children}</div>
+    </div>
+  );
+}
+
 
 /* ---------------- Cloud button ---------------- */
 export function CloudButton({
@@ -100,7 +132,7 @@ export function BadgeLogo({ size = 110 }: { size?: number }) {
       <div className="absolute inset-[12%] rounded-full border border-mint/50" />
       <div className="px-2 text-center leading-none">
         <span
-          className="script block text-ink"
+          className="logo-script block text-ink"
           style={{ fontSize: size * 0.3 }}
         >
           Dolcetta
@@ -268,6 +300,7 @@ export function PhotoBand({
   topEdge = "#ffffff",
   bottomEdge = "#ffffff",
   drip,
+  topDrip,
   className = "",
   fixed = false,
 }: {
@@ -277,6 +310,7 @@ export function PhotoBand({
   topEdge?: string | null;
   bottomEdge?: string | null;
   drip?: string;
+  topDrip?: string;
   className?: string;
   fixed?: boolean;
 }) {
@@ -287,9 +321,14 @@ export function PhotoBand({
         style={{ backgroundImage: `url(${image})`, backgroundAttachment: fixed ? "fixed" : undefined }}
       />
       <div className="absolute inset-0" style={{ background: overlay }} />
-      {topEdge ? <ScallopEdge color={topEdge} position="top" /> : null}
+      {topDrip ? (
+        <DripEdge color={topDrip} position="top" />
+      ) : topEdge ? (
+        <ScallopEdge color={topEdge} position="top" />
+      ) : null}
       <div className="relative z-10">{children}</div>
       {drip ? <DripEdge color={drip} /> : bottomEdge ? <ScallopEdge color={bottomEdge} position="bottom" /> : null}
+
     </section>
   );
 }

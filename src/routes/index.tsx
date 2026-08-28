@@ -22,6 +22,7 @@ import {
   PhotoBand,
   Reveal,
   ScallopEdge,
+  ScallopBadge,
   ScallopedSeal,
   SectionHeading,
 } from "@/components/bakery/decor";
@@ -155,16 +156,10 @@ function Specialties() {
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {SPECIALTIES.map(({ name, Icon }, i) => (
           <Reveal key={name} delay={i * 0.1} className="text-center">
-            <motion.div
-              whileHover={{ y: -8 }}
-              className="mx-auto grid h-40 w-40 place-items-center rounded-full bg-mint/15 p-3"
-              style={{
-                boxShadow: "0 0 0 6px rgba(255,255,255,.9), 0 0 0 8px rgba(121,208,200,.6)",
-              }}
-            >
-              <div className="grid h-full w-full place-items-center rounded-full bg-white">
-                <Icon className="h-11 w-11 text-mint" strokeWidth={1.4} />
-              </div>
+            <motion.div whileHover={{ y: -8 }} className="mx-auto w-fit">
+              <ScallopBadge size={168}>
+                <Icon className="h-14 w-14 text-mint" strokeWidth={1.2} />
+              </ScallopBadge>
             </motion.div>
             <h3 className="script mt-6 text-3xl">{name}</h3>
             <p className="mx-auto mt-2 max-w-[15rem] text-sm text-body">{LOREM.slice(0, 90)}…</p>
@@ -193,6 +188,7 @@ function MagicProcessing() {
     <PhotoBand
       image={IMG.greenMacarons}
       overlay="rgba(121,208,200,0.88)"
+      topDrip="#ffffff"
       drip="#79D0C8"
       className="px-4 py-28"
     >
