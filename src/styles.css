@@ -40,7 +40,8 @@
   --color-body: var(--body);
   --color-cream: var(--cream);
 
-  --font-script: "Grand Hotel", "Pacifico", cursive;
+  --font-script: "Bellota", "Grand Hotel", cursive;
+  --font-logo: "Grand Hotel", "Pacifico", cursive;
   --font-display: "Playfair Display", Georgia, serif;
   --font-sans: "Nunito", system-ui, sans-serif;
 
@@ -155,7 +156,14 @@
 /* ---------- misc ---------- */
 .script {
   font-family: var(--font-script);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.2;
+}
+.logo-script {
+  font-family: var(--font-logo);
   font-weight: 400;
+  font-style: normal;
   line-height: 1.15;
 }
 .serif {

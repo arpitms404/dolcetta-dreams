@@ -132,7 +132,7 @@ export function BadgeLogo({ size = 110 }: { size?: number }) {
       <div className="absolute inset-[12%] rounded-full border border-mint/50" />
       <div className="px-2 text-center leading-none">
         <span
-          className="script block text-ink"
+          className="logo-script block text-ink"
           style={{ fontSize: size * 0.3 }}
         >
           Dolcetta
