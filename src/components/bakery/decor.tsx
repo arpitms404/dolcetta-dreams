@@ -67,7 +67,8 @@ export function DripEdge({
     <div
       aria-hidden
       className={`pointer-events-none absolute inset-x-0 z-20 ${top ? "top-0" : "bottom-0 translate-y-full"} ${className}`}
-      style={{ height: 92, transform: top ? "scaleY(-1) translateY(-100%)" : undefined }}
+      style={{ height: 92 }}
+
     >
       <svg viewBox="0 0 1200 110" preserveAspectRatio="none" className="h-full w-full">
         <path d={dripPath()} fill={color} transform="translate(0,-18)" />
