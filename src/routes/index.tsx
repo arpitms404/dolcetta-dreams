@@ -75,7 +75,6 @@ function Hero() {
           />
         </motion.div>
       </AnimatePresence>
-      <div className="absolute inset-0 bg-white/10" />
 
       <div className="relative z-10 grid h-full place-items-center px-4">
         <motion.div
